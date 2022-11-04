@@ -1,6 +1,6 @@
 {
   "name": "@sup39/rehype-mdx-export-headings",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "sup39",
   "repository": "https://github.com/sup39/rehype-mdx-export-headings",
   "description": "A rehype plugin to extract headings (e.g. h2, h3) from mdx, assign them ids, and export headings list",

@@ -3,6 +3,12 @@
  *   tags: string[]
  *   name: string
  * }} ExportHeadingsOptions
+ *
+ * @typedef {{
+ *   tagName: string
+ *   label: string
+ *   id: string
+ * }} HeadingInfo
  */
 
 /** @type {(e: import('hast').RootContent) => string[]} */
@@ -15,6 +21,7 @@ const ExportHeadings = ({
   tags = ['h2'],
   name = 'headings',
 } = {}) => ({children}) => {
+  /** @type {any[]} */
   const items = [];
   children.forEach(node => {
     if (node.type !== 'element' || !tags.includes(node.tagName)) return;
@@ -24,6 +31,7 @@ const ExportHeadings = ({
     if (node.properties == null) node.properties = {id};
     else node.properties.id = id;
     // push item
+    /** @type {HeadingInfo} */
     const item = {tagName: node.tagName, label: innerText, id};
     items.push({
       type: 'ObjectExpression',
@@ -34,6 +42,7 @@ const ExportHeadings = ({
         computed: false,
         key: {type: 'Identifier', name},
         value: {type: 'Literal', value},
+        kind: 'init',
       })),
     });
   });
@@ -53,7 +62,7 @@ const ExportHeadings = ({
           id: {type: 'Identifier', name},
           init: {
             type: 'ArrayExpression',
-            elements: [],
+            elements: items,
           },
         }],
       },
