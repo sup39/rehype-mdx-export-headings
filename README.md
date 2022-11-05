@@ -41,10 +41,10 @@ const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
     rehypePlugins: [
-      () => ExportHeadings({
+      [ExportHeadings, {
         tags: ['h2', 'h3'],
         name: 'labels',
-      }),
+      }],
     ],
   },
 });
@@ -63,10 +63,10 @@ const withMDX = mdx({
   extension: /\.mdx?$/,
   options: {
     rehypePlugins: [
-      () => ExportHeadings({
+      [ExportHeadings, {
         tags: ['h2', 'h3'],
         name: 'labels',
-      }),
+      }],
     ],
   },
 });
